@@ -8,18 +8,37 @@ import {
 } from 'react-native';
 
 import styles from '../../styles';
+import {firebaseApp} from './authentication';
 
 module.exports = React.createClass({
   getInitialState() {
     return({
       email: '',
-      password: ''
+      password: '',
+      confirmPassword: '',
+      result: ''
     })
+  },
+
+  signUp() {
+    // Check if passwords match
+    if (this.state.password == this.state.confirmPassword) {
+      // Create User
+      let {email, password} = this.setState
+      console.log(this.state.email);
+      console.log(typeof this.state.email);
+      firebaseApp.auth().createUserWithEmailAndPassword(email, password)
+        .catch(error => this.setState({result: error.message}))
+    } else {
+      // Log error
+      this.setState({result: 'Password and Confirmation Password must match'});
+    }
   },
 
   render() {
     return (
       <View style={styles.container}>
+        <Text style={styles.feedback}>{this.state.result}</Text>
         <TextInput
           placeholder='Email'
           style={styles.input}
@@ -29,8 +48,18 @@ module.exports = React.createClass({
           placeholder='Password'
           style={styles.input}
           onChangeText={(text) => this.setState({password: text})}
+          secureTextEntry={true}
         />
-        <TouchableOpacity style={styles.buttonContainer}>
+        <TextInput
+          placeholder='Confirm Password'
+          style={styles.input}
+          onChangeText={(text) => this.setState({confirmPassword: text})}
+          secureTextEntry={true}
+        />
+        <TouchableOpacity
+          style={styles.buttonContainer}
+          onPress={() => this.signUp()}
+        >
           <Text style={styles.button}>
             Sign Up
           </Text>

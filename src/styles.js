@@ -37,5 +37,10 @@ module.exports = StyleSheet.create({
   },
   link: {
     color: '#0000FF',
+  },
+  feedback: {
+    textAlign: 'center',
+    color: '#FF0000',
+    padding: 5
   }
 })
