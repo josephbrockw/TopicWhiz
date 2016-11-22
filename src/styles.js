@@ -1,32 +1,39 @@
 import { StyleSheet } from 'react-native';
 
+// Style Variables
+const blue = '#90caf9';
+const navy = '#1a237e';
+const white = '#FFF';
+// Style Declarations
 module.exports = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     padding: 40,
-    backgroundColor: '#FFF'
+    backgroundColor: blue
   },
   input: {
+    backgroundColor: white,
     height: 50,
-    borderColor: '#000',
+    borderColor: navy,
     borderWidth: 1,
     borderRadius: 5,
     margin: 5,
-    textAlign: 'center'
+    textAlign: 'center',
+    color: navy
   },
   buttonContainer: {
     height: 50,
-    borderColor: '#000',
+    borderColor: navy,
     borderWidth: 1,
     borderRadius: 5,
     overflow: 'hidden',
-    backgroundColor: '#000',
+    backgroundColor: navy,
     margin: 5,
     justifyContent: 'center'
   },
   button: {
-    color: '#FFF',
+    color: white,
     fontSize: 20,
     textAlign: 'center'
   },
@@ -36,11 +43,27 @@ module.exports = StyleSheet.create({
     padding: 5
   },
   link: {
-    color: '#0000FF',
+    color: navy
   },
   feedback: {
     textAlign: 'center',
     color: '#FF0000',
     padding: 5
+  },
+
+  // Topics Section
+  topics: {
+    flex: 1,
+    backgroundColor: blue
+  },
+  header: {
+    marginTop: 20,
+    padding: 10,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  body: {
+    flex: 24
   }
 })

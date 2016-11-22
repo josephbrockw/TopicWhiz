@@ -24,7 +24,7 @@ module.exports = React.createClass({
     // Check if passwords match
     if (this.state.password == this.state.confirmPassword) {
       // Create User
-      let {email, password} = this.setState
+      let {email, password} = this.state
       console.log(this.state.email);
       console.log(typeof this.state.email);
       firebaseApp.auth().createUserWithEmailAndPassword(email, password)

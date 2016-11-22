@@ -21,14 +21,14 @@ module.exports = React.createClass({
 
   componentDidMount() {
     firebaseApp.auth().onAuthStateChanged(user => {
-      if(user) {
+      if (user) {
         console.log('user', user);
-
         // Navigate to main application page
+        this.props.navigator.push({name: 'topics'});
       }
     })
   },
-  
+
   signIn() {
     let {email, password} = this.state;
 
