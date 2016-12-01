@@ -52,7 +52,7 @@ module.exports = StyleSheet.create({
   },
 
   // Topics Section
-  topics: {
+  flexContainer: {
     flex: 1,
     backgroundColor: blue
   },
@@ -64,6 +64,42 @@ module.exports = StyleSheet.create({
     justifyContent: 'space-between'
   },
   body: {
-    flex: 24
+    flex: 24,
+    paddingRight: 20,
+    paddingLeft: 20
+  },
+  title: {
+    textAlign: 'center'
+  },
+
+  //List selection
+  list: {
+    flex: 1
+  },
+  row: {
+    alignItems: 'center',
+    backgroundColor: white,
+    borderColor: navy,
+    borderWidth: 1,
+    borderRadius: 5,
+    margin: 5,
+    padding: 10
+  },
+  rowTitle: {
+    fontWeight: 'bold'
+  },
+
+  // Details Section
+  detailTitle: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
+  detailSubtitle: {
+    textAlign: 'center',
+    fontSize: 14
+  },
+  comment: {
+    color: '#777'
   }
 })
