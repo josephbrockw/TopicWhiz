@@ -8,18 +8,41 @@ import {
 } from 'react-native';
 
 import styles from '../../styles';
+import { firebaseApp } from './authentication';
 
 module.exports = React.createClass({
   getInitialState() {
     return({
       email: '',
-      password: ''
+      password: '',
+      result: ''
     })
+  },
+
+  componentDidMount() {
+    firebaseApp.auth().onAuthStateChanged(user => {
+      if (user) {
+        console.log('user', user);
+        // Navigate to main application page
+        this.props.navigator.push({name: 'topics'});
+      }
+    })
+  },
+
+  signIn() {
+    let {email, password} = this.state;
+
+    firebaseApp.auth().signInWithEmailAndPassword(email, password)
+      .catch(error => {
+        console.log('error:', error.message);
+        this.setState({result: error.message});
+      })
   },
 
   render() {
     return (
       <View style={styles.container}>
+        <Text style={styles.feedback}>{this.state.result}</Text>
         <TextInput
           placeholder='Email'
           style={styles.input}
@@ -29,14 +52,20 @@ module.exports = React.createClass({
           placeholder='Password'
           style={styles.input}
           onChangeText={(text) => this.setState({password: text})}
+          secureTextEntry={true}
         />
-        <TouchableOpacity style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.buttonContainer}
+          onPress={() => this.signIn()}
+        >
           <Text style={styles.button}>
             Sign In
           </Text>
         </TouchableOpacity>
         <View style={styles.linkContainer}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => this.props.navigator.push({name: 'forgotPassword'})}
+          >
             <Text style={styles.link}>Forgot Password?</Text>
           </TouchableOpacity>
           <TouchableOpacity
